@@ -1,0 +1,18 @@
+<LineCircle1@Widget>:
+    onSwitch: 1
+    ringActivate: True
+    myRadius: 100
+    myColors: [[.1, 1, .1],[1, 0, .1]]
+    myColorCurrent: [1, 0, .1]
+    canvas:
+        Color:
+            #rgb: self.myColorCurrent if self.ringActivate == True else self.myColors[1]
+            a: root.onSwitch
+        Line:
+            width: 2 if root.ringActivate == True else root.myRadius/5
+            circle:
+                (root.center_x, root.center_y, root.myRadius) if root.ringActivate == True else (self.center_x, root.center_y, root.myRadius/5)
+        Ellipse:
+            size: (2*self.myRadius,2*self.myRadius) if root.ringActivate == True else (0.01,0.01)
+            pos: self.center_x-root.myRadius,root.center_y-root.myRadius
+    center: self.center
